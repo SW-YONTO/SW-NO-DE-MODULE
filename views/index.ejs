@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node Modules Cleaner</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-broom"></i> Node Modules Cleaner</h1>
+            <p>Scan and remove node_modules directories to free up disk space</p>
+        </header>
+
+        <div class="scan-section">
+            <div class="input-group">
+                <label for="scanPath">Scan Path:</label>
+                <input type="text" id="scanPath" placeholder="Enter path to scan (e.g., D:\Projects)" value="d:\">
+                <button id="scanBtn" class="btn btn-primary">
+                    <i class="fas fa-search"></i> Start Scan
+                </button>
+                <button id="testBtn" class="btn btn-secondary">
+                    <i class="fas fa-vial"></i> Test Current Dir
+                </button>
+            </div>
+            <div class="scan-tips">
+                <p><strong>Tips:</strong></p>
+                <ul>
+                    <li>Use absolute paths like <code>D:\Projects</code> or <code>C:\Users\YourName\Documents</code></li>
+                    <li>Scanning large drives may take several minutes</li>
+                    <li>System directories are automatically excluded for safety</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="loadingDiv" class="loading hidden">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Scanning for node_modules directories...</p>
+            <div class="progress-details">
+                <small>This may take a few minutes depending on the size of your directory</small>
+            </div>
+        </div>
+
+        <div id="resultsSection" class="results-section hidden">
+            <div class="results-header">
+                <div class="results-info">
+                    <h3>Scan Results</h3>
+                    <p id="resultsCount">Found 0 directories</p>
+                    <p id="totalSize">Total size: 0 MB</p>
+                </div>
+                <div class="actions">
+                    <button id="selectAllBtn" class="btn btn-secondary">
+                        <i class="fas fa-check-square"></i> Select All
+                    </button>
+                    <button id="deleteSelectedBtn" class="btn btn-danger" disabled>
+                        <i class="fas fa-trash"></i> Delete Selected
+                    </button>
+                </div>
+            </div>
+
+            <div id="directoryList" class="directory-list">
+                <!-- Directory items will be populated here -->
+            </div>
+        </div>
+
+        <div id="deleteProgress" class="progress-section hidden">
+            <h3>Deletion Progress</h3>
+            <div class="progress-bar">
+                <div id="progressFill" class="progress-fill"></div>
+            </div>
+            <p id="progressText">Deleting directories...</p>
+        </div>
+
+        <div id="deleteResults" class="results-summary hidden">
+            <h3>Deletion Results</h3>
+            <div id="deleteResultsList"></div>
+        </div>
+    </div>
+
+    <script src="/js/script.js"></script>
+</body>
+</html>
